@@ -2,5 +2,135 @@ body {
 	padding: 0px;
 	margin: 0px;
 	overflow-x: hidden;
-	overflow-y: hidden;
+	overflow-y: auto;
+}
+
+#HomePage {
+	a{
+		text-decoration: none;
+		color: #000;
+	}
+	.contentOption{
+		display: block;
+		margin: 10px auto;
+		text-align: center;
+		border-radius: 10px;
+		border: 1px solid #304529;
+		width: 180px;
+		background-color: #fff;
+		padding-top: 10px;
+	}
+	.contentOption:hover{
+		background-color: rgba(50,50,50,.1);
+	}
+	.imgOption{
+		width: 150px;
+		cursor: pointer;
+	}
+	.pLabel{
+		font-size: 14px;
+	}
+}
+
+#LoginPage {
+	display: block;
+	margin: 10px auto;
+	text-align: center;
+	border-radius: 10px;
+	border: 1px solid #304529;
+	width: 100%;
+	max-width: 300px;
+	background-color: #fff;
+	padding-top: 10px;
+
+	.label {
+
+	}
+	.input {
+		width: 90%;
+		height: 30px;
+		border: 1px solid #303030;
+		border-radius: 4px;
+	}
+	.btnAccess {
+		width: 30%;
+		display: inline-block;
+		vertical-align: top;
+		margin: 10px;
+		cursor: pointer;
+		border-radius: 8px;
+		color: #fff;
+		text-align: center;
+		background-color: #131C29;
+		border: 1px solid #131C29;
+		padding: 15px;
+	}
+
+	.btnBack {
+		width: 30%;
+		display: inline-block;
+		vertical-align: top;
+		margin: 10px;
+		cursor: pointer;
+		border-radius: 8px;
+		color: #131C29;
+		text-align: center;
+		background-color: #fff;
+		border: 1px solid #131C29;
+		padding: 15px;
+	}
+}
+
+#UserProfilePage {
+		.logout {
+			cursor: pointer;
+		}
+}
+
+#RegisterUser {
+	display: block;
+	margin: 10px auto;
+	text-align: left;
+	width: 100%;
+	max-width: 300px;
+	h1 {
+		text-align: center;
+	}
+	.label {
+
+	}
+	.input {
+		width: 90%;
+		height: 30px;
+		border: 1px solid #303030;
+		border-radius: 4px;
+		margin-bottom: 20px;
+	}
+	.btnAccess {
+		width: 30%;
+		display: inline-block;
+		vertical-align: top;
+		margin: 5px;
+		cursor: pointer;
+		border-radius: 8px;
+		color: #fff;
+		text-align: center;
+		background-color: #131C29;
+		border: 1px solid #131C29;
+		padding: 15px;
+	}
+
+	.btnBack {
+		width: 30%;
+		display: inline-block;
+		vertical-align: top;
+		margin: 5px;
+		cursor: pointer;
+		border-radius: 8px;
+		color: #131C29;
+		text-align: center;
+		background-color: #fff;
+		border: 1px solid #131C29;
+		padding: 15px;
+	}
 }
