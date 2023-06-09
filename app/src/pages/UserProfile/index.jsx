@@ -1,12 +1,32 @@
 /* eslint-disable */
 import React from 'react';
+import {
+    Accordion,
+    AccordionItem,
+    AccordionItemHeading,
+    AccordionItemButton,
+    AccordionItemPanel,
+} from 'react-accessible-accordion';
+import 'react-accessible-accordion/dist/fancy-example.css';
 import BackendServices from '../../services/BackendServices';
+import Header from '../../components/header';
 
 class UserProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: ''
+      id: '',
+      procedures: [
+        {
+          name: "Procedimento 1",
+        },
+        {
+          name: "Procedimento 2",
+        },
+        {
+          name: "Procedimento 3",
+        }
+      ]
     };
   }
 
@@ -35,11 +55,6 @@ class UserProfile extends React.Component {
     }).catch(function(err){
       console.log(err);
     });
-  }
-
-  logout() {
-    localStorage.setItem('token', '');
-    window.location.href = '/';
   }
 
   updateRegister() {
@@ -71,65 +86,95 @@ class UserProfile extends React.Component {
   render() {
     return (
       <section id="UserProfilePage">
-        <div className="logout" onClick={()=>this.logout()}>
-          Logout
-        </div>
-        <h2>Dados pessoais</h2>
-        <label className="label">Nome:</label>
-        <input className="input" type="text" id="name" />
-        <br />
-        <label className="label">Email:</label>
-        <input className="input" type="text" id="login" />
-        <br />
-        <label className="label">Telefone:</label>
-        <input className="input" type="number" id="phone" />
-        <br />
-        <label className="label">Gênero:</label>
-        <input className="input" type="text" id="gender" />
-        <br />
-        <label className="label">Data de nascimento:</label>
-        <input className="input" type="date" id="dateOfBirth" />
-        <br />
-        <label className="label">Endereço:</label>
-        <input className="input" type="text" id="address" />
-        <br />
-        <label className="label">Estado civil:</label>
-        <input className="input" type="text" id="maritalStatus" />
-        <br />
-        <label className="label">Nascimento múltiplo:</label>
-        <input className="input" type="text" id="multipleBirth" />
-        <br />
-        <h4>Contato:</h4>
-        <label className="label">Relação:</label>
-        <input className="input" type="text" id="contactRelationship" />
-        <br />
-        <label className="label">Nome:</label>
-        <input className="input" type="text" id="contactName" />
-        <br />
-        <label className="label">Telefone:</label>
-        <input className="input" type="text" id="contactPhone" />
-        <br />
-        <label className="label">Endereço:</label>
-        <input className="input" type="text" id="contactAddress" />
-        <br />
-        <label className="label">Gênero:</label>
-        <input className="input" type="text" id="contactGender" />
-        <br />
-        <h4>Comunicação:</h4>
-        <label className="label">Idiomas:</label>
-        <input className="input" type="text" id="languages" />
-        <br />
-        <label className="label">Idioma preferido:</label>
-        <input className="input" type="text" id="preferredLanguage" />
-        <br />
-        <label className="label">Clínico geral:</label>
-        <input className="input" type="text" id="generalPractitioner" />
-        <br />
-        <div className="btnAccess" onClick={()=>{this.updateRegister()}}>
-          Atualizar
-        </div>
-        <h2>Registro clínico</h2>
-        <h2>Permissões</h2>
+        <Header title="Home" logout={true} />
+
+        <Accordion className="accordionCommonQuestionsComponent" allowZeroExpanded>
+          <AccordionItem>
+            <AccordionItemHeading>
+              <AccordionItemButton className="contentAccordionHeader">
+                &bull; Dados cadastrais
+              </AccordionItemButton>
+            </AccordionItemHeading>
+            <AccordionItemPanel className="contentAccordionBody">
+              <div className="contentForm">
+              <h1>&bull; Informações pessoais:</h1>
+                <p className="label">Nome:</p>
+                <input className="input" type="text" id="name" />
+                <br />
+                <p className="label">Email:</p>
+                <input className="input" type="text" id="login" />
+                <br />
+                <p className="label">Senha:</p>
+                <input className="input" type="password" id="password" />
+                <br />
+                <p className="label">Telefone:</p>
+                <input className="input" type="number" id="phone" />
+                <br />
+                <p className="label">Gênero:</p>
+                <input className="input" type="text" id="gender" />
+                <br />
+                <p className="label">Data de nascimento:</p>
+                <input className="input" type="date" id="dateOfBirth" />
+                <br />
+                <p className="label">Endereço:</p>
+                <input className="input" type="text" id="address" />
+                <br />
+                <p className="label">Estado civil:</p>
+                <input className="input" type="text" id="maritalStatus" />
+                <br />
+                <p className="label">Nascimento múltiplo:</p>
+                <input className="input" type="text" id="multipleBirth" />
+                <br />
+                <p className="label">Idiomas:</p>
+                <input className="input" type="text" id="languages" />
+                <br />
+                <p className="label">Idioma preferido:</p>
+                <input className="input" type="text" id="preferredLanguage" />
+                <br />
+                <p className="label">Clínico geral:</p>
+                <input className="input" type="text" id="generalPractitioner" />
+              <h1>&bull; Contato de emergência:</h1>
+                <p className="label">Relação:</p>
+                <input className="input" type="text" id="contactRelationship" />
+                <br />
+                <p className="label">Nome:</p>
+                <input className="input" type="text" id="contactName" />
+                <br />
+                <p className="label">Telefone:</p>
+                <input className="input" type="text" id="contactPhone" />
+                <br />
+                <p className="label">Endereço:</p>
+                <input className="input" type="text" id="contactAddress" />
+                <br />
+                <p className="label">Gênero:</p>
+                <input className="input" type="text" id="contactGender" />
+                <br /><br />
+                <div className="btnAccess" onClick={()=>{this.updateRegister()}}>
+                  Salvar
+                </div>
+              </div>
+            </AccordionItemPanel>
+          </AccordionItem>
+
+          <AccordionItem>
+            <AccordionItemHeading>
+              <AccordionItemButton className="contentAccordionHeader">
+                &bull; Procedimentos
+              </AccordionItemButton>
+            </AccordionItemHeading>
+            <AccordionItemPanel className="contentAccordionBody">
+              <div className="contentForm">
+                {
+                  this.state.procedures.map((procedure) =>
+                    <div className="contentProcedure" key={procedure.name}>
+                      {procedure.name}
+                    </div>
+                  )
+                }
+              </div>
+            </AccordionItemPanel>
+          </AccordionItem>
+        </Accordion>
       </section>
     );
   }

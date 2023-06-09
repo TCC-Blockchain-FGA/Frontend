@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React from 'react';
 import BackendServices from '../../services/BackendServices';
+import Header from '../../components/header';
 
 class Login extends React.Component {
   constructor(props) {
@@ -56,8 +57,7 @@ class Login extends React.Component {
 
   businessLogin() {
     return (
-      <div>
-        <h3>Acesso de organizações</h3>
+      <div className="contentForm">
         <p className="label">CNPJ</p>
         <input className="input" type="text" pattern="\d*" placeholder="Digite o seu CNPJ" onChange={(e) => this.maskCNPJ(e, this)} value={this.state.login}></input>
 
@@ -69,17 +69,12 @@ class Login extends React.Component {
 
   userLogin() {
     return (
-      <div>
-        <h3>Acesso de usuários</h3>
+      <div className="contentForm">
         <p className="label">E-mail</p>
         <input className="input" type="email" placeholder="Digite o seu email" onChange={(e) => this.handleChange(e, "email")} value={this.state.login}></input>
 
         <p className="label">Senha</p>
         <input className="input" type="password" placeholder="Digite sua senha" onChange={(e) => this.handleChange(e, "password")} value={this.state.password}></input>
-        <br /><br />
-        <a href="/registerUser">
-          Registrar-se?
-        </a>
       </div>
     )
   }
@@ -99,6 +94,7 @@ class Login extends React.Component {
   render() {
     return (
       <section id="LoginPage">
+      <Header title="Login" logout={false} />
         {
           this.gup('type') === 'business' &&
           this.businessLogin()
@@ -108,12 +104,27 @@ class Login extends React.Component {
           this.userLogin()
         }
         <br/>
-        <div className="btnBack" onClick={() => window.location.href='/'}>
-          Voltar
-        </div>
         <div className="btnAccess" onClick={() => this.makeLogin()}>
-          Acessar
+          Entrar
         </div>
+        {
+          this.gup('type') === 'business' &&
+          <div className="btnOrg" onClick={() => window.location.href='/login?type=user'}>
+            Login como usuário?
+          </div>
+        }
+        {
+          this.gup('type') !== 'business' &&
+          <span>
+            <div className="btnRegister" onClick={() => window.location.href='/registerUser'}>
+              Cadastrar-se
+            </div>
+            <div className="btnOrg" onClick={() => window.location.href='/login?type=business'}>
+              Login como organização?
+            </div>
+          </span>
+        }
+
       </section>
     );
   }
