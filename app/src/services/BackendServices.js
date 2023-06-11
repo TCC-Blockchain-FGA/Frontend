@@ -4,6 +4,10 @@ function login(data) {
     return SetupBackEnd.post('/login', data);
 }
 
+function loginOrg(data) {
+    return SetupBackEnd.post('/loginOrg', data);
+}
+
 function register(data) {
     return SetupBackEnd.post('/register', data);
 }
@@ -16,11 +20,17 @@ function userData(data) {
     return SetupBackEnd.post('/userData', data);
 }
 
+function generateCredential(data) {
+    return SetupBackEnd.post('/generateCredential', data);
+}
+
 const BackendServices = {
     login,
     register,
     updateRegister,
-    userData
+    userData,
+    loginOrg,
+    generateCredential
 }
 
 export default BackendServices;

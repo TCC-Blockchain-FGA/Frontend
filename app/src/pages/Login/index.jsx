@@ -80,15 +80,28 @@ class Login extends React.Component {
   }
 
   makeLogin() {
-    BackendServices.login({
-      login: this.state.login,
-      password: this.state.password,
-    }).then(function(res){
-      localStorage.setItem('token', res.data.token);
-      window.location.href = '/userProfile';
-    }).catch(function(err){
-      console.log(err);
-    });
+    if(this.gup('type') === 'business'){
+      BackendServices.loginOrg({
+        login: this.state.login,
+        password: this.state.password,
+      }).then(function(res){
+        localStorage.setItem('token', res.data.token);
+        window.location.href = '/businessProfile';
+      }).catch(function(err){
+        console.log(err);
+      });
+    }
+    else {
+      BackendServices.login({
+        login: this.state.login,
+        password: this.state.password,
+      }).then(function(res){
+        localStorage.setItem('token', res.data.token);
+        window.location.href = '/userProfile';
+      }).catch(function(err){
+        console.log(err);
+      });
+    }
   }
 
   render() {

@@ -9,16 +9,18 @@
     "axios": "^0.27.2",
     "classnames": "^2.3.2",
     "gapi-script": "^1.2.0",
+    "modern-react-qr-reader": "^1.0.12",
     "node-sass": "^8.0.0",
     "react": "^18.1.0",
     "react-accessible-accordion": "^5.0.0",
     "react-dom": "^18.1.0",
+    "react-qr-code": "^2.0.11",
     "react-router-dom": "^6.3.0",
     "react-scripts": "4.0.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "export HTTPS=true&&SSL_CRT_FILE=cert.pem&&SSL_KEY_FILE=key.pem react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -10,12 +10,14 @@ import {
 import 'react-accessible-accordion/dist/fancy-example.css';
 import BackendServices from '../../services/BackendServices';
 import Header from '../../components/header';
+import QRCode from "react-qr-code";
 
 class UserProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       id: '',
+      login: '',
       procedures: [
         {
           name: "Procedimento 1",
@@ -35,7 +37,7 @@ class UserProfile extends React.Component {
     BackendServices.userData({
       token: localStorage.getItem('token')
     }).then(function(res){
-      that.setState({id: res.data.id});
+      that.setState({id: res.data.id, login: res.data.login});
       document.getElementById("login").value = res.data.login;
       document.getElementById("name").value = res.data.name;
       document.getElementById("phone").value = res.data.phone;
@@ -87,6 +89,13 @@ class UserProfile extends React.Component {
     return (
       <section id="UserProfilePage">
         <Header title="Home" logout={true} />
+
+        <QRCode
+          size={256}
+          style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+          value={this.state.login}
+          viewBox={`0 0 256 256`}
+          />
 
         <Accordion className="accordionCommonQuestionsComponent" allowZeroExpanded>
           <AccordionItem>
