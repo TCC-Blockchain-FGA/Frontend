@@ -27,18 +27,20 @@ class BusinessProfile extends React.Component {
   }
 
   handleScan = data => {
-    let that = this;
-    if (data) {
-      this.state.result = data;
-      BackendServices.userByLogin({
-        login: data
-      }).then(function(res){
-        that.setState({user: res.data});
-        document.getElementById("did").value = res.data.login;
-      }).catch(function(err){
-        console.log(err);
-      });
-    }
+      let that = this;
+      if (data) {
+        this.state.result = data;
+        BackendServices.userByLogin({
+          login: data
+        }).then(function(res){
+          that.setState({user: res.data});
+          document.getElementById("did").value = res.data[1];
+          that.setState({scan: false});
+        }).catch(function(err){
+          console.log(err);
+          that.setState({scan: false});
+        });
+      }
   }
 
   handleError = err => {
@@ -64,7 +66,7 @@ class BusinessProfile extends React.Component {
       season: document.getElementById("season").value,
       condition: document.getElementById("condition").value,
       prescription: document.getElementById("prescription").value,
-      email: this.state.user.login,
+      email: this.state.user[1],
       createDate: document.getElementById("createDate").value,
       doctor: document.getElementById("doctor").value,
       squad: document.getElementById("squad").value
@@ -93,10 +95,6 @@ class BusinessProfile extends React.Component {
         <div className="contentQrCode">
           <QrReader
             delay={300}
-            constraints={{
-              facingMode: 'environment'
-            }}
-            key="environment"
             onError={this.handleError}
             onScan={this.handleScan}
             style={{ width: '100%' }}
@@ -106,6 +104,9 @@ class BusinessProfile extends React.Component {
         <div className="contentForm">
           <div className="contentText">
             <h1>&bull; Nova consulta</h1>
+            <p className="label">Paciente:</p>
+            <input className="input" type="text" id="did" />
+            <br />
             <p className="label">Status:</p>
             <input className="input" type="text" id="name" />
             <br />
@@ -120,9 +121,6 @@ class BusinessProfile extends React.Component {
             <br />
             <p className="label">Prescrição:</p>
             <input className="input" type="text" id="prescription" />
-            <br />
-            <p className="label">Paciente:</p>
-            <input className="input" type="text" id="did" />
             <br />
             <p className="label">Data do atendimento:</p>
             <input className="input" type="date" id="createDate" />
