@@ -1,10 +1,33 @@
 import React from 'react';
 import BackendServices from '../../services/BackendServices';
 import Header from '../../components/header';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class RegisterUser extends React.Component {
 
   makeRegister() {
+    if(
+      document.getElementById("login").value === '' ||
+      document.getElementById("name").value === '' ||
+      document.getElementById("phone").value === '' ||
+      document.getElementById("password").value === '' ||
+      document.getElementById("gender").value === '' ||
+      document.getElementById("dateOfBirth").value === '' ||
+      document.getElementById("address").value === '' ||
+      document.getElementById("maritalStatus").value === '' ||
+      document.getElementById("multipleBirth").value === '' ||
+      document.getElementById("contactRelationship").value === '' ||
+      document.getElementById("contactName").value === '' ||
+      document.getElementById("contactPhone").value === '' ||
+      document.getElementById("contactAddress").value === '' ||
+      document.getElementById("contactGender").value === '' ||
+      document.getElementById("languages").value === '' ||
+      document.getElementById("preferredLanguage").value === '' ||
+      document.getElementById("generalPractitioner").value === ''
+    )
+      return toast.error("Dados incompletos");
+
     BackendServices.register({
       login: document.getElementById("login").value,
       name: document.getElementById("name").value,
@@ -27,6 +50,7 @@ class RegisterUser extends React.Component {
       window.location.href = '/login';
     }).catch(function(err){
       console.log(err);
+      return toast.error("Erro! Verifique as informações");
     });
   }
 
@@ -96,6 +120,10 @@ class RegisterUser extends React.Component {
         Login
       </div>
       <br/><br/>
+      <ToastContainer />
+      <div className="btnGoToTop" onClick={()=>{window.scrollTo(0, 0)}}>
+        <img src={require("../../assets/imgs/arrow-up.png").default} alt="Go To Top" className="imgLeft"/>
+      </div>
     </section>
    );
   }

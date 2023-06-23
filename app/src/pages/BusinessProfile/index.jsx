@@ -10,27 +10,34 @@ import {
 import 'react-accessible-accordion/dist/fancy-example.css';
 import BackendServices from '../../services/BackendServices';
 import Header from '../../components/header';
-import QrReader from 'modern-react-qr-reader'
+import QrReader from 'modern-react-qr-reader';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class BusinessProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      result: 'No result'
+      result: '',
+      user: {login: ''}
     }
 
     this.handleError = this.handleError.bind(this);
     this.handleScan = this.handleScan.bind(this);
   }
 
-  componentDidMount() {
-  }
-
   handleScan = data => {
+    let that = this;
     if (data) {
       this.state.result = data;
-        console.log(this.state.result);
-        this.setState({result: data});
+      BackendServices.userByLogin({
+        login: data
+      }).then(function(res){
+        that.setState({user: res.data});
+        document.getElementById("did").value = res.data.login;
+      }).catch(function(err){
+        console.log(err);
+      });
     }
   }
 
@@ -38,61 +45,104 @@ class BusinessProfile extends React.Component {
     console.error(err)
   }
 
-  updateRegister() {
+  makeRegister() {
+    if(
+      document.getElementById("name").value === '' ||
+      document.getElementById("type").value === '' ||
+      document.getElementById("season").value === '' ||
+      document.getElementById("condition").value === '' ||
+      document.getElementById("prescription").value === '' ||
+      document.getElementById("did").value === '' ||
+      document.getElementById("createDate").value === '' ||
+      document.getElementById("doctor").value === '' ||
+      document.getElementById("squad").value === '')
+      return toast.error("Campos não preenchidos");
+
     BackendServices.generateCredential({
-      login: document.getElementById("login").value
+      name: document.getElementById("name").value,
+      type: document.getElementById("type").value,
+      season: document.getElementById("season").value,
+      condition: document.getElementById("condition").value,
+      prescription: document.getElementById("prescription").value,
+      email: this.state.user.login,
+      createDate: document.getElementById("createDate").value,
+      doctor: document.getElementById("doctor").value,
+      squad: document.getElementById("squad").value
     }).then(function(res){
-      console.log(res);
+      document.getElementById("name").value = '';
+      document.getElementById("type").value = '';
+      document.getElementById("season").value = '';
+      document.getElementById("condition").value = '';
+      document.getElementById("prescription").value = '';
+      document.getElementById("did").value = '';
+      document.getElementById("createDate").value = '';
+      document.getElementById("doctor").value = '';
+      document.getElementById("squad").value = '';
+      toast.success("Registro adicionado com sucesso");
     }).catch(function(err){
+      toast.error("Falha ao adicionar registro");
       console.log(err);
     });
   }
 
   render() {
     return (
-      <section id="UserProfilePage">
-        <Header title="Home" logout={true} />
+      <section id="BusinessProfilePage">
+        <Header title="Home" logout={true} history={true} />
 
-        <QrReader
-          delay={300}
-          constraints={{
-            facingMode: 'environment'
-          }}
-          key="environment"
-          onError={this.handleError}
-          onScan={this.handleScan}
-          style={{ width: '100%' }}
-        />
-        <p>{this.state.result}</p>
+        <div className="contentQrCode">
+          <QrReader
+            delay={300}
+            constraints={{
+              facingMode: 'environment'
+            }}
+            key="environment"
+            onError={this.handleError}
+            onScan={this.handleScan}
+            style={{ width: '100%' }}
+          />
+        </div>
 
-        <Accordion className="accordionCommonQuestionsComponent" allowZeroExpanded>
-          <AccordionItem>
-            <AccordionItemHeading>
-              <AccordionItemButton className="contentAccordionHeader">
-                &bull; Novo registro de consulta
-              </AccordionItemButton>
-            </AccordionItemHeading>
-            <AccordionItemPanel className="contentAccordionBody">
-              <div className="contentForm">
-                <div className="btnAccess" onClick={()=>{this.updateRegister()}}>
-                  Salvar
-                </div>
-              </div>
-            </AccordionItemPanel>
-          </AccordionItem>
+        <div className="contentForm">
+          <div className="contentText">
+            <h1>&bull; Nova consulta</h1>
+            <p className="label">Status:</p>
+            <input className="input" type="text" id="name" />
+            <br />
+            <p className="label">Tipo:</p>
+            <input className="input" type="text" id="type" />
+            <br />
+            <p className="label">Razão:</p>
+            <input className="input" type="text" id="season" />
+            <br />
+            <p className="label">Condição:</p>
+            <input className="input" type="text" id="condition" />
+            <br />
+            <p className="label">Prescrição:</p>
+            <input className="input" type="text" id="prescription" />
+            <br />
+            <p className="label">Paciente:</p>
+            <input className="input" type="text" id="did" />
+            <br />
+            <p className="label">Data do atendimento:</p>
+            <input className="input" type="date" id="createDate" />
+            <br />
+            <p className="label">Médico responsável:</p>
+            <input className="input" type="text" id="doctor" />
+            <br />
+            <p className="label">Equipe:</p>
+            <input className="input" type="text" id="squad" />
+            <br /><br />
+            <div className="btnAccess" onClick={()=>{this.makeRegister()}}>
+              Salvar
+            </div>
+          </div>
+        </div>
+        <ToastContainer />
 
-          <AccordionItem>
-            <AccordionItemHeading>
-              <AccordionItemButton className="contentAccordionHeader">
-                &bull; Novo registro de exame
-              </AccordionItemButton>
-            </AccordionItemHeading>
-            <AccordionItemPanel className="contentAccordionBody">
-              <div className="contentForm">
-              </div>
-            </AccordionItemPanel>
-          </AccordionItem>
-        </Accordion>
+        <div className="btnGoToTop" onClick={()=>{window.scrollTo(0, 0)}}>
+          <img src={require("../../assets/imgs/arrow-up.png").default} alt="Go To Top" className="imgLeft"/>
+        </div>
       </section>
     );
   }

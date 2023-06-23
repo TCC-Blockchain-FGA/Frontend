@@ -24,13 +24,23 @@ function generateCredential(data) {
     return SetupBackEnd.post('/generateCredential', data);
 }
 
+function getCredentials(data) {
+    return SetupBackEnd.post('/getCredentials', data);
+}
+
+function userByLogin(data) {
+    return SetupBackEnd.post('/userByLogin', data);
+}
+
 const BackendServices = {
     login,
     register,
     updateRegister,
     userData,
     loginOrg,
-    generateCredential
+    generateCredential,
+    getCredentials,
+    userByLogin
 }
 
 export default BackendServices;

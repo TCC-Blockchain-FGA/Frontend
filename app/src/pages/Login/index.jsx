@@ -2,6 +2,8 @@
 import React from 'react';
 import BackendServices from '../../services/BackendServices';
 import Header from '../../components/header';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class Login extends React.Component {
   constructor(props) {
@@ -88,7 +90,7 @@ class Login extends React.Component {
         localStorage.setItem('token', res.data.token);
         window.location.href = '/businessProfile';
       }).catch(function(err){
-        console.log(err);
+        return toast.error("Erro! Verifique as informações");
       });
     }
     else {
@@ -99,7 +101,7 @@ class Login extends React.Component {
         localStorage.setItem('token', res.data.token);
         window.location.href = '/userProfile';
       }).catch(function(err){
-        console.log(err);
+        return toast.error("Erro! Verifique as informações");
       });
     }
   }
@@ -137,7 +139,7 @@ class Login extends React.Component {
             </div>
           </span>
         }
-
+        <ToastContainer />
       </section>
     );
   }
