@@ -8,7 +8,7 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
-import BackendServices from '../../services/BackendServices';
+import IssuerServices from '../../services/IssuerServices';
 import Header from '../../components/header';
 import QrReader from 'modern-react-qr-reader';
 import { ToastContainer, toast } from 'react-toastify';
@@ -30,7 +30,7 @@ class BusinessProfile extends React.Component {
       let that = this;
       if (data) {
         this.state.result = data;
-        BackendServices.userByLogin({
+        IssuerServices.userByLogin({
           login: data
         }).then(function(res){
           that.setState({user: res.data});
@@ -60,7 +60,7 @@ class BusinessProfile extends React.Component {
       document.getElementById("squad").value === '')
       return toast.error("Campos não preenchidos");
 
-    BackendServices.generateCredential({
+    IssuerServices.generateCredential({
       name: document.getElementById("name").value,
       type: document.getElementById("type").value,
       season: document.getElementById("season").value,

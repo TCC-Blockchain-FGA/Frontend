@@ -9,7 +9,7 @@ import {
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
 import Modal from 'react-modal';
-import BackendServices from '../../services/BackendServices';
+import IssuerServices from '../../services/IssuerServices';
 import Header from '../../components/header';
 import QRCode from "react-qr-code";
 
@@ -37,10 +37,10 @@ class UserProfile extends React.Component {
 
   componentDidMount() {
     let that = this;
-    BackendServices.userData({
+    IssuerServices.userData({
       token: localStorage.getItem('token')
     }).then(function(res){
-      BackendServices.getCredentials({email: res.data.login}).then(function(res){
+      IssuerServices.getCredentials({email: res.data.login}).then(function(res){
         if(res.data !== null)
           that.setState({procedures: res.data});
       }).catch(function(err){
@@ -69,7 +69,7 @@ class UserProfile extends React.Component {
   }
 
   updateRegister() {
-    BackendServices.updateRegister({
+    IssuerServices.updateRegister({
       id: this.state.id,
       login: document.getElementById("login").value,
       name: document.getElementById("name").value,

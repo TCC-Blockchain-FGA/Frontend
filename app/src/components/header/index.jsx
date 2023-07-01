@@ -1,20 +1,7 @@
 /* eslint-disable */
 import React from 'react';
-import BackendServices from '../../services/BackendServices';
-import Header from '../../components/header';
 
-class Login extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      login: "",
-      password: "",
-    };
-  }
-
-  componentDidMount() {
-  }
-
+class Header extends React.Component {
   history() {
     window.location.href = '/historic';
   }
@@ -49,4 +36,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default Header;

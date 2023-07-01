@@ -9,7 +9,7 @@ import {
 } from 'react-accessible-accordion';
 import Modal from 'react-modal';
 import 'react-accessible-accordion/dist/fancy-example.css';
-import BackendServices from '../../services/BackendServices';
+import IssuerServices from '../../services/IssuerServices';
 import Header from '../../components/header';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -36,7 +36,7 @@ class Historic extends React.Component {
 
   componentDidMount() {
     let that = this;
-    BackendServices.getCredentials({email: ""}).then(function(res){
+    IssuerServices.getCredentials({email: ""}).then(function(res){
       that.setState({procedures: res.data});
     }).catch(function(err){
       console.log(err);

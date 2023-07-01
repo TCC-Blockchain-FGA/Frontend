@@ -1,5 +1,5 @@
 import React from 'react';
-import BackendServices from '../../services/BackendServices';
+import IssuerServices from '../../services/IssuerServices';
 import Header from '../../components/header';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -28,7 +28,7 @@ class RegisterUser extends React.Component {
     )
       return toast.error("Dados incompletos");
 
-    BackendServices.register({
+    IssuerServices.register({
       login: document.getElementById("login").value,
       name: document.getElementById("name").value,
       phone: document.getElementById("phone").value,

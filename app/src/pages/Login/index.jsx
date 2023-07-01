@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from 'react';
-import BackendServices from '../../services/BackendServices';
+import IssuerServices from '../../services/IssuerServices';
 import Header from '../../components/header';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -83,7 +83,7 @@ class Login extends React.Component {
 
   makeLogin() {
     if(this.gup('type') === 'business'){
-      BackendServices.loginOrg({
+      IssuerServices.loginOrg({
         login: this.state.login,
         password: this.state.password,
       }).then(function(res){
@@ -94,7 +94,7 @@ class Login extends React.Component {
       });
     }
     else {
-      BackendServices.login({
+      IssuerServices.login({
         login: this.state.login,
         password: this.state.password,
       }).then(function(res){
