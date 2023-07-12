@@ -37,9 +37,94 @@ body {
 #LoginPage {
 	display: block;
 	margin: 0px auto;
-	text-align: center;
-	width: 100%;
-	background-color: #fff;
+	text-align: left;
+	width: 100vw;
+	padding: 0px;
+
+	@media only screen and (max-width: 685px) {
+		.sideLeftContent {
+			display: none;
+		}
+
+		.sideRightContent {
+			display: block;
+			margin: 0px auto;
+			width: 80vw;
+			padding: 10px 10px 10px 10px;
+		}
+
+		.logoSmall {
+			width: 150px;
+			display: block;
+			position: relative;
+			margin: 0px auto;
+		}
+
+		.titleLogin {
+			display: none;
+		}
+	}
+
+	@media only screen and (min-width: 686px) {
+		.sideLeftContent {
+			display: inline-block;
+			width: 46vw;
+		}
+
+		.sideRightContent {
+			display: inline-block;
+			margin: 0px;
+			width: 46vw;
+			padding: 30px 10px 10px 10px;
+			top: 0px;
+			left: 0px;
+			margin: 0px;
+		}
+
+		.logoSmall {
+			display: none;
+		}
+
+		.titleLogin {
+			display: block;
+			position: relative;
+			margin: 0px auto;
+			text-align: center;
+			font-size: 44px;
+			color: #131C29;
+			font-weight: bold;
+		}
+	}
+
+	.sideLeftContent {
+		background-color: #D9D9D9;
+		color: #fff;
+		position: relative;
+		min-height: 800px;
+		height: 100%;
+		min-height: 105vh;
+		min-width: 350px;
+		top: 0px;
+		left: 0px;
+		margin: 0px;
+		padding-top: 30px;
+		vertical-align: top;
+		text-align: center;
+
+		.logo {
+			width: 350px;
+		}
+	}
+
+	.sideRightContent {
+		background-color: #fff;
+		color: #131C29;
+		position: relative;
+		min-height: 100%;
+		height: auto;
+		min-width: 300px;
+		vertical-align: top;
+	}
 
 	.contentForm {
 			position: relative;
@@ -287,12 +372,98 @@ body {
 		background-color: #fff;
 		overflow-x: hidden;
 
+		@media only screen and (max-width: 685px) {
+			.sideLeftContent {
+				display: none;
+			}
+
+			.sideRightContent {
+				display: block;
+				margin: 0px auto;
+				width: 80vw;
+				padding: 10px 10px 10px 10px;
+			}
+
+			.logoSmall {
+				width: 150px;
+				display: block;
+				position: relative;
+				margin: 0px auto;
+			}
+
+			.titleLogin {
+				display: none;
+			}
+		}
+
+		@media only screen and (min-width: 686px) {
+			.sideLeftContent {
+				display: inline-block;
+				width: 46vw;
+			}
+
+			.sideRightContent {
+				display: inline-block;
+				margin: 0px;
+				width: 46vw;
+				padding: 10px 10px 10px 10px;
+				top: 0px;
+				left: 0px;
+				margin: 0px;
+			}
+
+			.logoSmall {
+				display: none;
+			}
+
+			.titleLogin {
+				display: block;
+				position: relative;
+				margin: 0px auto;
+				text-align: center;
+				font-size: 44px;
+				color: #131C29;
+				font-weight: bold;
+			}
+		}
+
+		.sideLeftContent {
+			background-color: #D9D9D9;
+			color: #fff;
+			position: relative;
+			min-height: 800px;
+			height: 100%;
+			min-height: 140vh;
+			min-width: 270px;
+			top: 0px;
+			left: 0px;
+			margin: 0px;
+			padding-top: 30px;
+			vertical-align: top;
+			text-align: center;
+
+			.logo {
+				width: 350px;
+			}
+		}
+
+		.sideRightContent {
+			background-color: #fff;
+			color: #131C29;
+			position: relative;
+			min-height: 100%;
+			height: auto;
+			min-width: 300px;
+			vertical-align: top;
+		}
+
 	.contentForm {
 			position: relative;
 			display: block;
-			margin: 40px auto 20px auto;
+			margin: 10px auto 10px auto;
 			width: 100%;
-			max-width: 300px;
+			max-width: 400px;
+			min-width: 350px;
 			text-align: left;
 			color: #2E485D;
 	}
@@ -338,6 +509,13 @@ body {
 		background-color: #fff;
 		border: 1px solid #2E485D;
 		padding: 15px;
+	}
+
+	.contentInput {
+		width: 45%;
+		margin-right: 3%;
+		display: inline-block;
+		vertical-align: top;
 	}
 }
 

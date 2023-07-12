@@ -1,10 +1,15 @@
 import React from 'react';
 import IssuerServices from '../../services/IssuerServices';
-import Header from '../../components/header';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 class RegisterUser extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      step: 0
+    };
+  }
 
   makeRegister() {
     if(
@@ -57,72 +62,121 @@ class RegisterUser extends React.Component {
   render() {
    return (
     <section id="RegisterUser">
-      <Header title="Cadastro" logout={false} />
-      <div className="contentForm">
-        <h1>&bull; Informações pessoais</h1>
-          <p className="label">Nome:</p>
-          <input className="input" type="text" id="name" />
-          <br />
-          <p className="label">Email:</p>
-          <input className="input" type="text" id="login" />
-          <br />
-          <p className="label">Senha:</p>
-          <input className="input" type="password" id="password" />
-          <br />
-          <p className="label">Telefone:</p>
-          <input className="input" type="number" id="phone" />
-          <br />
-          <p className="label">Gênero:</p>
-          <input className="input" type="text" id="gender" />
-          <br />
-          <p className="label">Data de nascimento:</p>
-          <input className="input" type="date" id="dateOfBirth" />
-          <br />
-          <p className="label">Endereço:</p>
-          <input className="input" type="text" id="address" />
-          <br />
-          <p className="label">Estado civil:</p>
-          <input className="input" type="text" id="maritalStatus" />
-          <br />
-          <p className="label">Nascimento múltiplo:</p>
-          <input className="input" type="text" id="multipleBirth" />
-          <br />
-          <p className="label">Idiomas:</p>
-          <input className="input" type="text" id="languages" />
-          <br />
-          <p className="label">Idioma preferido:</p>
-          <input className="input" type="text" id="preferredLanguage" />
-          <br />
-          <p className="label">Clínico geral:</p>
-          <input className="input" type="text" id="generalPractitioner" />
-        <h1>&bull; Contato de emergência:</h1>
-          <p className="label">Relação:</p>
-          <input className="input" type="text" id="contactRelationship" />
-          <br />
-          <p className="label">Nome:</p>
-          <input className="input" type="text" id="contactName" />
-          <br />
-          <p className="label">Telefone:</p>
-          <input className="input" type="text" id="contactPhone" />
-          <br />
-          <p className="label">Endereço:</p>
-          <input className="input" type="text" id="contactAddress" />
-          <br />
-          <p className="label">Gênero:</p>
-          <input className="input" type="text" id="contactGender" />
-          <br />
+      <div className="sideLeftContent">
+        <br/><br/><br/><br/>
+        <img src={require("../../assets/imgs/logo.png").default} alt="Logo" className="logo" />
       </div>
-          <br />
-      <div className="btnAccess" onClick={()=>{this.makeRegister()}}>
-        Cadastrar-se
-      </div>
-      <div className="btnBack" onClick={() => window.location.href='/login'}>
-        Login
-      </div>
-      <br/><br/>
-      <ToastContainer />
-      <div className="btnGoToTop" onClick={()=>{window.scrollTo(0, 0)}}>
-        <img src={require("../../assets/imgs/arrow-up.png").default} alt="Go To Top" className="imgLeft"/>
+
+      <div className="sideRightContent">
+        <br/>
+        <img src={require("../../assets/imgs/logo.png").default} alt="Logo" className="logoSmall" />
+
+        <p className="titleLogin">Registro</p>
+        <div className="contentForm" style={(this.state.step === 1?{display: "none"}:{display: "block"})}>
+          <h1>Informações pessoais</h1>
+            <div className="contentInput" style={{width: "94%"}}>
+              <p className="label">Nome:</p>
+              <input className="input" type="text" id="name" />
+            </div>
+            <div className="contentInput">
+              <p className="label">Email:</p>
+              <input className="input" type="text" id="login" />
+            </div>
+            <div className="contentInput">
+              <p className="label">Senha:</p>
+              <input className="input" type="password" id="password" />
+            </div>
+            <div className="contentInput">
+              <p className="label">Telefone:</p>
+              <input className="input" type="number" id="phone" />
+            </div>
+            <div className="contentInput">
+              <p className="label">Gênero:</p>
+              <select className="input" id="gender">
+                <option value="M">Masculino</option>
+                <option value="F">Feminino</option>
+              </select>
+            </div>
+            <div className="contentInput">
+              <p className="label">Data de nascimento:</p>
+              <input className="input" type="date" id="dateOfBirth" />
+            </div>
+            <div className="contentInput">
+              <p className="label">Endereço:</p>
+              <input className="input" type="text" id="address" />
+            </div>
+            <div className="contentInput">
+              <p className="label">Estado civil:</p>
+              <input className="input" type="text" id="maritalStatus" />
+            </div>
+            <div className="contentInput">
+              <p className="label">Parto múltiplo:</p>
+              <select className="input" id="multipleBirth">
+                <option value="N">Não</option>
+                <option value="S">Sim</option>
+              </select>
+            </div>
+            <div className="contentInput" style={{width: "94%"}}>
+              <p className="label">Idiomas:</p>
+              <input className="input" type="text" id="languages" />
+            </div>
+            <div className="contentInput">
+              <p className="label">Idioma preferido:</p>
+              <input className="input" type="text" id="preferredLanguage" />
+            </div>
+            <div className="contentInput">
+              <p className="label">Clínico geral:</p>
+              <input className="input" type="text" id="generalPractitioner" />
+            </div>
+            <br/><br/>
+            <div className="btnAccess" onClick={()=>{this.setState({step: 1})}}>
+              Próximo
+            </div>
+            <div className="btnBack" onClick={() => window.location.href='/login'}>
+              Login
+            </div>
+        </div>
+        <div className="contentForm" style={(this.state.step === 0?{display: "none"}:{display: "block"})}>
+          <h1>Contato de emergência:</h1>
+            <div className="contentInput" style={{width: "94%"}}>
+              <p className="label">Relação:</p>
+              <input className="input" type="text" id="contactRelationship" />
+            </div>
+            <div className="contentInput" style={{width: "94%"}}>
+              <p className="label">Nome:</p>
+              <input className="input" type="text" id="contactName" />
+            </div>
+            <div className="contentInput" style={{width: "94%"}}>
+              <p className="label">Telefone:</p>
+              <input className="input" type="text" id="contactPhone" />
+            </div>
+            <div className="contentInput" style={{width: "94%"}}>
+              <p className="label">Endereço:</p>
+              <input className="input" type="text" id="contactAddress" />
+            </div>
+            <div className="contentInput" style={{width: "94%"}}>
+              <p className="label">Gênero:</p>
+              <select className="input" id="contactGender">
+                <option value="M">Masculino</option>
+                <option value="F">Feminino</option>
+              </select>
+            </div>
+            <br />
+            <br />
+          <div className="btnAccess" onClick={()=>{this.makeRegister()}}>
+            Cadastrar-se
+          </div>
+          <div className="btnBack"  onClick={()=>{this.setState({step: 0})}}>
+            Anterior
+          </div>
+        </div>
+        <br/><br/>
+        <ToastContainer />
+        {
+          // <div className="btnGoToTop" onClick={()=>{window.scrollTo(0, 0)}}>
+          //   <img src={require("../../assets/imgs/arrow-up.png").default} alt="Go To Top" className="imgLeft"/>
+          // </div>
+        }
       </div>
     </section>
    );

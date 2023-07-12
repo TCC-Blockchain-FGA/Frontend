@@ -1,7 +1,6 @@
 /* eslint-disable */
 import React from 'react';
 import IssuerServices from '../../services/IssuerServices';
-import Header from '../../components/header';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -109,7 +108,16 @@ class Login extends React.Component {
   render() {
     return (
       <section id="LoginPage">
-      <Header title="Login" logout={false} />
+      <div className="sideLeftContent">
+        <br/><br/><br/><br/>
+        <img src={require("../../assets/imgs/logo.png").default} alt="Logo" className="logo" />
+      </div>
+
+      <div className="sideRightContent">
+        <br/><br/><br/>
+        <img src={require("../../assets/imgs/logo.png").default} alt="Logo" className="logoSmall" />
+
+        <p className="titleLogin">Login</p>
         {
           this.gup('type') === 'business' &&
           this.businessLogin()
@@ -139,6 +147,7 @@ class Login extends React.Component {
             </div>
           </span>
         }
+        </div>
         <ToastContainer />
       </section>
     );
