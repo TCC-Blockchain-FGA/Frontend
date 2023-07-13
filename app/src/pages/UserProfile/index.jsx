@@ -9,6 +9,7 @@ import {
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
 import Modal from 'react-modal';
+import { ToastContainer, toast } from 'react-toastify';
 import IssuerServices from '../../services/IssuerServices';
 import Header from '../../components/header';
 import QRCode from "react-qr-code";
@@ -24,6 +25,7 @@ class UserProfile extends React.Component {
       procedures: [],
       procedure: '',
       modalIsOpen: false,
+      step: 0,
     };
   }
 
@@ -64,7 +66,7 @@ class UserProfile extends React.Component {
       document.getElementById("preferredLanguage").value = res.data.preferredLanguage;
       document.getElementById("generalPractitioner").value = res.data.generalPractitioner;
     }).catch(function(err){
-      console.log(err);
+      toast.error("Erro ao recuperar dados");
     });
   }
 
@@ -88,9 +90,9 @@ class UserProfile extends React.Component {
       preferredLanguage: document.getElementById("preferredLanguage").value,
       generalPractitioner: document.getElementById("generalPractitioner").value,
     }).then(function(res){
-      alert('Dados atualizados!');
+      toast.success("Dados atualizados com sucesso");
     }).catch(function(err){
-      console.log(err);
+      toast.error("Erro ao atualizar dados");
     });
   }
 
@@ -99,109 +101,158 @@ class UserProfile extends React.Component {
       <section id="UserProfilePage">
         <Header title="Home" logout={true} />
 
-        <div className="contentQrCode">
-          <QRCode
-            size={200}
-            style={{ height: "auto", maxWidth: "300px", width: "100%" }}
-            value={this.state.login}
-            viewBox={`0 0 200 200`}
-            />
+        <div className="sideLeftContent">
+          <div className="contentQrCode">
+            <QRCode
+              size={200}
+              style={{ height: "auto", maxWidth: "300px", width: "100%" }}
+              value={this.state.login}
+              viewBox={`0 0 200 200`}
+              bgColor="#D9D9D9"
+              />
+          </div>
         </div>
 
-        <Accordion className="accordionCommonQuestionsComponent" allowZeroExpanded>
-          <AccordionItem>
-            <AccordionItemHeading>
-              <AccordionItemButton className="contentAccordionHeader">
-                &bull; Dados cadastrais
-              </AccordionItemButton>
-            </AccordionItemHeading>
-            <AccordionItemPanel className="contentAccordionBody">
-              <div className="contentForm">
-              <h1>&bull; Informações pessoais:</h1>
-                <p className="label">Nome:</p>
-                <input className="input" type="text" id="name" />
-                <br />
-                <p className="label">Email:</p>
-                <input className="input" type="text" id="login" />
-                <br />
-                <p className="label">Senha:</p>
-                <input className="input" type="password" id="password" />
-                <br />
-                <p className="label">Telefone:</p>
-                <input className="input" type="number" id="phone" />
-                <br />
-                <p className="label">Gênero:</p>
-                <input className="input" type="text" id="gender" />
-                <br />
-                <p className="label">Data de nascimento:</p>
-                <input className="input" type="date" id="dateOfBirth" />
-                <br />
-                <p className="label">Endereço:</p>
-                <input className="input" type="text" id="address" />
-                <br />
-                <p className="label">Estado civil:</p>
-                <input className="input" type="text" id="maritalStatus" />
-                <br />
-                <p className="label">Nascimento múltiplo:</p>
-                <input className="input" type="text" id="multipleBirth" />
-                <br />
-                <p className="label">Idiomas:</p>
-                <input className="input" type="text" id="languages" />
-                <br />
-                <p className="label">Idioma preferido:</p>
-                <input className="input" type="text" id="preferredLanguage" />
-                <br />
-                <p className="label">Clínico geral:</p>
-                <input className="input" type="text" id="generalPractitioner" />
-              <h1>&bull; Contato de emergência:</h1>
-                <p className="label">Relação:</p>
-                <input className="input" type="text" id="contactRelationship" />
-                <br />
-                <p className="label">Nome:</p>
-                <input className="input" type="text" id="contactName" />
-                <br />
-                <p className="label">Telefone:</p>
-                <input className="input" type="text" id="contactPhone" />
-                <br />
-                <p className="label">Endereço:</p>
-                <input className="input" type="text" id="contactAddress" />
-                <br />
-                <p className="label">Gênero:</p>
-                <input className="input" type="text" id="contactGender" />
-                <br /><br />
+        <div className="sideRightContent">
+          <div className="contentQrCodeMini">
+            <QRCode
+              size={200}
+              style={{ height: "auto", maxWidth: "300px", width: "100%" }}
+              value={this.state.login}
+              viewBox={`0 0 200 200`}
+              />
+          </div>
+          <Accordion className="accordionCommonQuestionsComponent" preExpanded={['a']} allowMultipleExpanded={true} allowZeroExpanded>
+            <AccordionItem uuid="a">
+              <AccordionItemHeading>
+                <AccordionItemButton className="contentAccordionHeader">
+                  Dados cadastrais
+                </AccordionItemButton>
+              </AccordionItemHeading>
+              <AccordionItemPanel className="contentAccordionBody">
+              <div className="contentForm" style={(this.state.step === 1?{display: "none"}:{display: "block"})}>
+                  <div className="contentInput" style={{width: "94%"}}>
+                    <p className="label">Nome:</p>
+                    <input className="input" type="text" id="name" />
+                  </div>
+                  <div className="contentInput">
+                    <p className="label">Email:</p>
+                    <input className="input" type="text" id="login" />
+                  </div>
+                  <div className="contentInput">
+                    <p className="label">Senha:</p>
+                    <input className="input" type="password" id="password" />
+                  </div>
+                  <div className="contentInput">
+                    <p className="label">Telefone:</p>
+                    <input className="input" type="number" id="phone" />
+                  </div>
+                  <div className="contentInput">
+                    <p className="label">Gênero:</p>
+                    <select className="input" id="gender">
+                      <option value="M">Masculino</option>
+                      <option value="F">Feminino</option>
+                    </select>
+                  </div>
+                  <div className="contentInput">
+                    <p className="label">Data de nascimento:</p>
+                    <input className="input" type="date" id="dateOfBirth" />
+                  </div>
+                  <div className="contentInput">
+                    <p className="label">Endereço:</p>
+                    <input className="input" type="text" id="address" />
+                  </div>
+                  <div className="contentInput">
+                    <p className="label">Estado civil:</p>
+                    <input className="input" type="text" id="maritalStatus" />
+                  </div>
+                  <div className="contentInput">
+                    <p className="label">Parto múltiplo:</p>
+                    <select className="input" id="multipleBirth">
+                      <option value="N">Não</option>
+                      <option value="S">Sim</option>
+                    </select>
+                  </div>
+                  <div className="contentInput" style={{width: "94%"}}>
+                    <p className="label">Idiomas:</p>
+                    <input className="input" type="text" id="languages" />
+                  </div>
+                  <div className="contentInput">
+                    <p className="label">Idioma preferido:</p>
+                    <input className="input" type="text" id="preferredLanguage" />
+                  </div>
+                  <div className="contentInput">
+                    <p className="label">Clínico geral:</p>
+                    <input className="input" type="text" id="generalPractitioner" />
+                  </div>
+                  <br/><br/>
+                  <div className="btnAccess" onClick={()=>{this.setState({step: 1})}}>
+                    Próximo
+                  </div>
+              </div>
+              <div className="contentForm" style={(this.state.step === 0?{display: "none"}:{display: "block"})}>
+                  <div className="contentInput" style={{width: "94%"}}>
+                    <p className="label">Relação:</p>
+                    <input className="input" type="text" id="contactRelationship" />
+                  </div>
+                  <div className="contentInput" style={{width: "94%"}}>
+                    <p className="label">Nome:</p>
+                    <input className="input" type="text" id="contactName" />
+                  </div>
+                  <div className="contentInput" style={{width: "94%"}}>
+                    <p className="label">Telefone:</p>
+                    <input className="input" type="text" id="contactPhone" />
+                  </div>
+                  <div className="contentInput" style={{width: "94%"}}>
+                    <p className="label">Endereço:</p>
+                    <input className="input" type="text" id="contactAddress" />
+                  </div>
+                  <div className="contentInput" style={{width: "94%"}}>
+                    <p className="label">Gênero:</p>
+                    <select className="input" id="contactGender">
+                      <option value="M">Masculino</option>
+                      <option value="F">Feminino</option>
+                    </select>
+                  </div>
+                  <br />
+                  <br />
                 <div className="btnAccess" onClick={()=>{this.updateRegister()}}>
-                  Salvar
+                  Atualizar
+                </div>
+                <div className="btnBack"  onClick={()=>{this.setState({step: 0})}}>
+                  Anterior
                 </div>
               </div>
-            </AccordionItemPanel>
-          </AccordionItem>
+              </AccordionItemPanel>
+            </AccordionItem>
 
-          <AccordionItem>
-            <AccordionItemHeading>
-              <AccordionItemButton className="contentAccordionHeader">
-                &bull; Procedimentos
-              </AccordionItemButton>
-            </AccordionItemHeading>
-            <AccordionItemPanel className="contentAccordionBody">
-              <div className="contentForm">
-                {
-                  this.state.procedures.length > 0 &&
-                  this.state.procedures.map((procedure) =>
-                    <div className="contentProcedure" key={procedure[0]} onClick={()=>{this.openModal(procedure)}}>
-                      {procedure[0]} - {procedure[1]}
+            <AccordionItem uuid="b">
+              <AccordionItemHeading>
+                <AccordionItemButton className="contentAccordionHeader">
+                  Procedimentos
+                </AccordionItemButton>
+              </AccordionItemHeading>
+              <AccordionItemPanel className="contentAccordionBody">
+                <div className="contentForm">
+                  {
+                    this.state.procedures.length > 0 &&
+                    this.state.procedures.map((procedure) =>
+                      <div className="contentProcedure" key={procedure[0]} onClick={()=>{this.openModal(procedure)}}>
+                        {procedure[0]} - {procedure[1]}
+                      </div>
+                    )
+                  }
+                  {
+                    this.state.procedures.length === 0 &&
+                    <div>
+                      <h3>Sem registros!</h3>
                     </div>
-                  )
-                }
-                {
-                  this.state.procedures.length === 0 &&
-                  <div>
-                    <h3>Sem registros!</h3>
-                  </div>
-                }
-              </div>
-            </AccordionItemPanel>
-          </AccordionItem>
-        </Accordion>
+                  }
+                </div>
+              </AccordionItemPanel>
+            </AccordionItem>
+          </Accordion>
+        </div>
 
         <Modal
             isOpen={this.state.modalIsOpen}
@@ -234,9 +285,13 @@ class UserProfile extends React.Component {
             </div>
         </Modal>
 
-        <div className="btnGoToTop" onClick={()=>{window.scrollTo(0, 0)}}>
-          <img src={require("../../assets/imgs/arrow-up.png").default} alt="Go To Top" className="imgLeft"/>
-        </div>
+        <ToastContainer />
+        {
+          !this.state.modalIsOpen &&
+          <div className="btnGoToTop" onClick={()=>{window.scrollTo(0, 0)}}>
+            <img src={require("../../assets/imgs/arrow-up.png").default} alt="Go To Top" className="imgLeft"/>
+          </div>
+        }
       </section>
     );
   }

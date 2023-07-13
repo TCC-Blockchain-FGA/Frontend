@@ -92,47 +92,60 @@ class BusinessProfile extends React.Component {
       <section id="BusinessProfilePage">
         <Header title="Home" logout={true} history={true} />
 
-        <div className="contentQrCode">
-          <QrReader
-            delay={300}
-            onError={this.handleError}
-            onScan={this.handleScan}
-            style={{ width: '100%' }}
-          />
+        <div className="sideLeftContent">
+          <div className="contentQrCode">
+            <QrReader
+              delay={300}
+              onError={this.handleError}
+              onScan={this.handleScan}
+              style={{ width: '100%' }}
+            />
+          </div>
         </div>
 
-        <div className="contentForm">
-          <div className="contentText">
-            <h1>&bull; Nova consulta</h1>
-            <p className="label">Paciente:</p>
-            <input className="input" type="text" id="did" />
-            <br />
-            <p className="label">Status:</p>
-            <input className="input" type="text" id="name" />
-            <br />
-            <p className="label">Tipo:</p>
-            <input className="input" type="text" id="type" />
-            <br />
-            <p className="label">Razão:</p>
-            <input className="input" type="text" id="season" />
-            <br />
-            <p className="label">Condição:</p>
-            <input className="input" type="text" id="condition" />
-            <br />
-            <p className="label">Prescrição:</p>
-            <input className="input" type="text" id="prescription" />
-            <br />
-            <p className="label">Data do atendimento:</p>
-            <input className="input" type="date" id="createDate" />
-            <br />
-            <p className="label">Médico responsável:</p>
-            <input className="input" type="text" id="doctor" />
-            <br />
-            <p className="label">Equipe:</p>
-            <input className="input" type="text" id="squad" />
-            <br /><br />
-            <div className="btnAccess" onClick={()=>{this.makeRegister()}}>
-              Salvar
+        <div className="sideRightContent">
+          <div className="contentQrCodeMini">
+            <QrReader
+              delay={300}
+              onError={this.handleError}
+              onScan={this.handleScan}
+              style={{ width: '100%' }}
+            />
+          </div>
+
+          <div className="contentForm">
+            <div className="contentText">
+              <h1>Nova consulta</h1>
+              <p className="label">Paciente:</p>
+              <input className="input" type="text" id="did" />
+              <br />
+              <p className="label">Status:</p>
+              <input className="input" type="text" id="name" />
+              <br />
+              <p className="label">Tipo:</p>
+              <input className="input" type="text" id="type" />
+              <br />
+              <p className="label">Razão:</p>
+              <input className="input" type="text" id="season" />
+              <br />
+              <p className="label">Condição:</p>
+              <input className="input" type="text" id="condition" />
+              <br />
+              <p className="label">Prescrição:</p>
+              <input className="input" type="text" id="prescription" />
+              <br />
+              <p className="label">Data do atendimento:</p>
+              <input className="input" type="date" id="createDate" />
+              <br />
+              <p className="label">Médico responsável:</p>
+              <input className="input" type="text" id="doctor" />
+              <br />
+              <p className="label">Equipe:</p>
+              <input className="input" type="text" id="squad" />
+              <br /><br />
+              <div className="btnAccess" onClick={()=>{this.makeRegister()}}>
+                Salvar
+              </div>
             </div>
           </div>
         </div>
