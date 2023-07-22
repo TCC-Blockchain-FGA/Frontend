@@ -145,7 +145,7 @@ class UserProfile extends React.Component {
                   </div>
                   <div className="contentInput">
                     <p className="label">Telefone:</p>
-                    <input className="input" type="number" id="phone" />
+                    <input className="input" type="text" id="phone" />
                   </div>
                   <div className="contentInput">
                     <p className="label">Gênero:</p>
@@ -164,7 +164,12 @@ class UserProfile extends React.Component {
                   </div>
                   <div className="contentInput">
                     <p className="label">Estado civil:</p>
-                    <input className="input" type="text" id="maritalStatus" />
+                    <select className="input" id="maritalStatus">
+                      <option value="Solteiro">Solteiro(a)</option>
+                      <option value="Casado">Casado(a)</option>
+                      <option value="Divorciado">Divorciado(a)</option>
+                      <option value="Viuvo">Viúvo(a)</option>
+                    </select>
                   </div>
                   <div className="contentInput">
                     <p className="label">Parto múltiplo:</p>
