@@ -1,10 +1,13 @@
 import React from 'react';
+import ValidateInitialRouter from '../../utils/ValidateInitialRouter';
 
 class Home extends React.Component {
   render() {
    return (
-    <section>
-      Home page
+    <section className="mainContent">
+      {
+        <ValidateInitialRouter />
+      }
     </section>
    );
   }

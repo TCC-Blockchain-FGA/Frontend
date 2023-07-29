@@ -1,65 +1,188 @@
 import React from 'react';
+import IssuerServices from '../../services/IssuerServices';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class RegisterUser extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      step: 0
+    };
+  }
+
+  makeRegister() {
+    if(
+      document.getElementById("login").value === '' ||
+      document.getElementById("name").value === '' ||
+      document.getElementById("phone").value === '' ||
+      document.getElementById("password").value === '' ||
+      document.getElementById("gender").value === '' ||
+      document.getElementById("dateOfBirth").value === '' ||
+      document.getElementById("address").value === '' ||
+      document.getElementById("maritalStatus").value === '' ||
+      document.getElementById("multipleBirth").value === '' ||
+      document.getElementById("contactRelationship").value === '' ||
+      document.getElementById("contactName").value === '' ||
+      document.getElementById("contactPhone").value === '' ||
+      document.getElementById("contactAddress").value === '' ||
+      document.getElementById("contactGender").value === '' ||
+      document.getElementById("languages").value === '' ||
+      document.getElementById("preferredLanguage").value === '' ||
+      document.getElementById("generalPractitioner").value === ''
+    )
+      return toast.error("Dados incompletos");
+
+    IssuerServices.register({
+      login: document.getElementById("login").value,
+      name: document.getElementById("name").value,
+      phone: document.getElementById("phone").value,
+      password: document.getElementById("password").value,
+      gender: document.getElementById("gender").value,
+      dateOfBirth: document.getElementById("dateOfBirth").value,
+      address: document.getElementById("address").value,
+      maritalStatus: document.getElementById("maritalStatus").value,
+      multipleBirth: document.getElementById("multipleBirth").value,
+      contactRelationship: document.getElementById("contactRelationship").value,
+      contactName: document.getElementById("contactName").value,
+      contactPhone: document.getElementById("contactPhone").value,
+      contactAddress: document.getElementById("contactAddress").value,
+      contactGender: document.getElementById("contactGender").value,
+      languages: document.getElementById("languages").value,
+      preferredLanguage: document.getElementById("preferredLanguage").value,
+      generalPractitioner: document.getElementById("generalPractitioner").value,
+    }).then(function(res){
+      window.location.href = '/login';
+    }).catch(function(err){
+      console.log(err);
+      return toast.error("Erro! Verifique as informações");
+    });
+  }
+
   render() {
    return (
-    <section>
-      <h1>Registro de paciente</h1>
-      <form>
-        <label>Nome:</label>
-        <input type="text" name="name" required />
-        <br />
-        <label>Telefone:</label>
-        <input type="number" name="phone" required />
-        <br />
-        <label>Gênero:</label>
-        <input type="text" name="gender" required />
-        <br />
-        <label>Data de nascimento:</label>
-        <input type="date" name="birthDate" required />
-        <br />
-        <label>Endereço:</label>
-        <input type="text" name="address" required />
-        <br />
-        <label>Estado civil:</label>
-        <input type="text" name="civilState" required />
-        <br />
-        <label>Nascimento múltiplo:</label>
-        <input type="text" name="multipleBirth" required />
-        <br />
+    <section id="RegisterUser">
+      <div className="sideLeftContent">
+        <br/><br/><br/><br/>
+        <img src={require("../../assets/imgs/logo.png").default} alt="Logo" className="logo" />
+      </div>
+
+      <div className="sideRightContent">
+        <br/>
+        <img src={require("../../assets/imgs/logo.png").default} alt="Logo" className="logoSmall" />
+
+        <p className="titleLogin">Registro</p>
+        <div className="contentForm" style={(this.state.step === 1?{display: "none"}:{display: "block"})}>
+          <h1>Informações pessoais</h1>
+            <div className="contentInput" style={{width: "94%"}}>
+              <p className="label">Nome:</p>
+              <input className="input" type="text" id="name" />
+            </div>
+            <div className="contentInput">
+              <p className="label">Email:</p>
+              <input className="input" type="text" id="login" />
+            </div>
+            <div className="contentInput">
+              <p className="label">Senha:</p>
+              <input className="input" type="password" id="password" />
+            </div>
+            <div className="contentInput">
+              <p className="label">Telefone:</p>
+              <input className="input" type="text" id="phone" />
+            </div>
+            <div className="contentInput">
+              <p className="label">Gênero:</p>
+              <select className="input" id="gender">
+                <option value="M">Masculino</option>
+                <option value="F">Feminino</option>
+              </select>
+            </div>
+            <div className="contentInput">
+              <p className="label">Data de nascimento:</p>
+              <input className="input" type="date" id="dateOfBirth" />
+            </div>
+            <div className="contentInput">
+              <p className="label">Endereço:</p>
+              <input className="input" type="text" id="address" />
+            </div>
+            <div className="contentInput">
+              <p className="label">Estado civil:</p>
+              <select className="input" id="maritalStatus">
+                <option value="Solteiro">Solteiro(a)</option>
+                <option value="Casado">Casado(a)</option>
+                <option value="Divorciado">Divorciado(a)</option>
+                <option value="Viuvo">Viúvo(a)</option>
+              </select>
+            </div>
+            <div className="contentInput">
+              <p className="label">Parto múltiplo:</p>
+              <select className="input" id="multipleBirth">
+                <option value="N">Não</option>
+                <option value="S">Sim</option>
+              </select>
+            </div>
+            <div className="contentInput" style={{width: "94%"}}>
+              <p className="label">Idiomas:</p>
+              <input className="input" type="text" id="languages" />
+            </div>
+            <div className="contentInput">
+              <p className="label">Idioma preferido:</p>
+              <input className="input" type="text" id="preferredLanguage" />
+            </div>
+            <div className="contentInput">
+              <p className="label">Clínico geral:</p>
+              <input className="input" type="text" id="generalPractitioner" />
+            </div>
+            <br/><br/>
+            <div className="btnAccess" onClick={()=>{this.setState({step: 1})}}>
+              Próximo
+            </div>
+            <div className="btnBack" onClick={() => window.location.href='/login'}>
+              Login
+            </div>
+        </div>
+        <div className="contentForm" style={(this.state.step === 0?{display: "none"}:{display: "block"})}>
+          <h1>Contato de emergência:</h1>
+            <div className="contentInput" style={{width: "94%"}}>
+              <p className="label">Relação:</p>
+              <input className="input" type="text" id="contactRelationship" />
+            </div>
+            <div className="contentInput" style={{width: "94%"}}>
+              <p className="label">Nome:</p>
+              <input className="input" type="text" id="contactName" />
+            </div>
+            <div className="contentInput" style={{width: "94%"}}>
+              <p className="label">Telefone:</p>
+              <input className="input" type="text" id="contactPhone" />
+            </div>
+            <div className="contentInput" style={{width: "94%"}}>
+              <p className="label">Endereço:</p>
+              <input className="input" type="text" id="contactAddress" />
+            </div>
+            <div className="contentInput" style={{width: "94%"}}>
+              <p className="label">Gênero:</p>
+              <select className="input" id="contactGender">
+                <option value="M">Masculino</option>
+                <option value="F">Feminino</option>
+              </select>
+            </div>
+            <br />
+            <br />
+          <div className="btnAccess" onClick={()=>{this.makeRegister()}}>
+            Cadastrar-se
+          </div>
+          <div className="btnBack"  onClick={()=>{this.setState({step: 0})}}>
+            Anterior
+          </div>
+        </div>
+        <br/><br/>
+        <ToastContainer />
         {
-          // <label>Foto:</label>
-          // <input type="text" name="firstname" required>
-          // <br>
+          // <div className="btnGoToTop" onClick={()=>{window.scrollTo(0, 0)}}>
+          //   <img src={require("../../assets/imgs/arrow-up.png").default} alt="Go To Top" className="imgLeft"/>
+          // </div>
         }
-        <h4>Contato:</h4>
-        <label>Relação:</label>
-        <input type="text" name="contactRelation" required />
-        <br />
-        <label>Nome:</label>
-        <input type="text" name="contactName" required />
-        <br />
-        <label>Telefone:</label>
-        <input type="text" name="contactPhone" required />
-        <br />
-        <label>Endereço:</label>
-        <input type="text" name="contactAddress" required />
-        <br />
-        <label>Gênero:</label>
-        <input type="text" name="contactGender" required />
-        <br />
-        <h4>Comunicação:</h4>
-        <label>Idiomas:</label>
-        <input type="text" name="language" required />
-        <br />
-        <label>Idioma preferido:</label>
-        <input type="text" name="preferedLanguage" required />
-        <br />
-        <label>Clínico geral:</label>
-        <input type="text" name="generalPractitioner" required />
-        <br />
-        <input type="submit" value="Registrar" />
-      </form>
+      </div>
     </section>
    );
   }

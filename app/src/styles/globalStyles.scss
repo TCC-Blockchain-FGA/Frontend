@@ -2,5 +2,786 @@ body {
 	padding: 0px;
 	margin: 0px;
 	overflow-x: hidden;
-	overflow-y: hidden;
+	overflow-y: auto;
+	width: 100vw;
+	height: 100vh;
+}
+
+#HomePage {
+	a{
+		text-decoration: none;
+		color: #000;
+	}
+	.contentOption{
+		display: block;
+		margin: 10px auto;
+		text-align: center;
+		border-radius: 10px;
+		border: 1px solid #304529;
+		width: 180px;
+		background-color: #fff;
+		padding-top: 10px;
+	}
+	.contentOption:hover{
+		background-color: rgba(50,50,50,.1);
+	}
+	.imgOption{
+		width: 150px;
+		cursor: pointer;
+	}
+	.pLabel{
+		font-size: 14px;
+	}
+}
+
+#LoginPage {
+	display: block;
+	margin: 0px auto;
+	text-align: left;
+	width: 100vw;
+	padding: 0px;
+
+	@media only screen and (max-width: 685px) {
+		.sideLeftContent {
+			display: none;
+		}
+
+		.sideRightContent {
+			display: block;
+			margin: 0px auto;
+			width: 80vw;
+			padding: 10px 10px 10px 10px;
+		}
+
+		.logoSmall {
+			width: 150px;
+			display: block;
+			position: relative;
+			margin: 0px auto;
+		}
+
+		.titleLogin {
+			display: none;
+		}
+	}
+
+	@media only screen and (min-width: 686px) {
+		.sideLeftContent {
+			display: inline-block;
+			width: 46vw;
+		}
+
+		.sideRightContent {
+			display: inline-block;
+			margin: 0px;
+			width: 46vw;
+			padding: 30px 10px 10px 10px;
+			top: 0px;
+			left: 0px;
+			margin: 0px;
+		}
+
+		.logoSmall {
+			display: none;
+		}
+
+		.titleLogin {
+			display: block;
+			position: relative;
+			margin: 0px auto;
+			text-align: center;
+			font-size: 44px;
+			color: #131C29;
+			font-weight: bold;
+		}
+	}
+
+	.sideLeftContent {
+		background-color: #D9D9D9;
+		color: #fff;
+		position: relative;
+		min-height: 800px;
+		height: 100%;
+		min-height: 105vh;
+		min-width: 350px;
+		top: 0px;
+		left: 0px;
+		margin: 0px;
+		padding-top: 30px;
+		vertical-align: top;
+		text-align: center;
+
+		.logo {
+			width: 350px;
+		}
+	}
+
+	.sideRightContent {
+		background-color: #fff;
+		color: #131C29;
+		position: relative;
+		min-height: 100%;
+		height: auto;
+		min-width: 300px;
+		vertical-align: top;
+	}
+
+	.contentForm {
+			position: relative;
+			display: block;
+			margin: 40px auto 20px auto;
+			width: 100%;
+			max-width: 300px;
+			text-align: left;
+			color: #2E485D;
+	}
+
+	.label {
+		margin: 20px 0px 5px 0px;
+	}
+	.input {
+		width: 100%;
+		height: 30px;
+		border: none;
+		padding-left: 10px;
+		border-radius: 4px;
+		background-color: #D9D9D9;
+	}
+	.btnAccess {
+		width: 100%;
+		max-width: 270px;
+		display: block;
+		margin: 10px auto;
+		cursor: pointer;
+		border-radius: 8px;
+		color: #2E485D;
+		text-align: center;
+		background-color: #fff;
+		border: 1px solid #2E485D;
+		padding: 15px;
+	}
+	.btnRegister {
+		width: 100%;
+		max-width: 270px;
+		display: block;
+		margin: 10px auto;
+		cursor: pointer;
+		border-radius: 8px;
+		color: #fff;
+		text-align: center;
+		background-color: #2E485D;
+		border: 1px solid #2E485D;
+		padding: 15px;
+	}
+	.btnOrg {
+		width: 100%;
+		max-width: 270px;
+		display: block;
+		margin: 10px auto;
+		cursor: pointer;
+		border-radius: 8px;
+		color: #2E485D;
+		text-align: center;
+		padding: 15px;
+	}
+}
+
+#UserProfilePage {
+		display: block;
+		margin: 0px auto;
+		text-align: left;
+		width: 100%;
+		background-color: #fff;
+		overflow-x: hidden;
+
+		.contentInput {
+			width: 45%;
+			margin-right: 3%;
+			display: inline-block;
+			vertical-align: top;
+		}
+
+		@media only screen and (max-width: 685px) {
+			.sideLeftContent {
+				display: none;
+			}
+
+			.sideRightContent {
+				display: block;
+				margin: 0px auto;
+				width: 80vw;
+				padding: 10px 10px 10px 10px;
+			}
+
+			.contentQrCodeMini {
+				display: block;
+			}
+
+			.btnGoToTop {
+				display: block !important;
+			}
+		}
+
+		@media only screen and (min-width: 686px) {
+			.sideLeftContent {
+				display: inline-block;
+				width: 46vw;
+			}
+
+			.btnGoToTop {
+				display: none !important;
+			}
+
+			.sideRightContent {
+				display: inline-block;
+				margin: 0px;
+				width: 46vw;
+				padding: 10px 10px 10px 10px;
+				top: 0px;
+				left: 0px;
+				margin: 0px;
+			}
+
+			.contentQrCodeMini {
+				display: none;
+			}
+		}
+
+		.sideLeftContent {
+			background-color: #D9D9D9;
+			color: #fff;
+			position: relative;
+			min-height: 800px;
+			height: 100%;
+			min-height: 110vh;
+			min-width: 270px;
+			top: 0px;
+			left: 0px;
+			margin: 0px;
+			padding-top: 30px;
+			vertical-align: top;
+			text-align: center;
+		}
+
+		.sideRightContent {
+			background-color: #fff;
+			color: #131C29;
+			position: relative;
+			min-height: 100%;
+			height: auto;
+			min-width: 300px;
+			vertical-align: top;
+		}
+
+			.contentQrCode {
+				display: block;
+				margin: 10% auto;
+				width: 80%;
+				max-width: 500px;
+				position: relative;
+				background-color: #D9D9D9;
+			}
+
+			.contentQrCodeMini {
+				margin: 10% auto;
+				width: 80%;
+				max-width: 500px;
+				position: relative;
+				background-color: #fff;
+			}
+
+
+		.contentProcedure {
+			width: 100%;
+			cursor: pointer;
+			border-bottom: 1px solid #2E485D;
+			padding: 10px;
+			font-size: 20px;
+			margin-bottom: 10px;
+		}
+		.contentAccordionHeader {
+			background-color: #fff;
+			text-align: left;
+			font-size: 22px;
+			font-weight: bold;
+			color: #2E485D;
+			padding: 10px 10px 10px 20px;
+			cursor: pointer;
+		}
+		.contentAccordionBody {
+			background-color: #fff;
+		}
+		.contentForm {
+				position: relative;
+				display: block;
+				margin: 0px auto;
+				padding: 20px 0px 20px 0px;
+				width: 100%;
+				max-width: 500px;
+				text-align: left;
+				color: #2E485D;
+		}
+		h1 {
+			text-align: left;
+			color: #2E485D;
+		}
+		.label {
+			color: #2E485D;
+			margin: 20px 0px 5px 0px;
+		}
+		.input {
+			width: 97%;
+			height: 30px;
+			border: none;
+			padding-left: 10px;
+			border-radius: 4px;
+			background-color: #D9D9D9;
+		}
+		.btnAccess {
+			width: 100%;
+			max-width: 270px;
+			display: block;
+			margin: 10px auto;
+			cursor: pointer;
+			border-radius: 8px;
+			color: #fff;
+			text-align: center;
+			background-color: #2E485D;
+			border: 1px solid #2E485D;
+			padding: 15px;
+		}
+
+		.btnBack {
+			width: 100%;
+			max-width: 270px;
+			display: block;
+			margin: 10px auto;
+			cursor: pointer;
+			border-radius: 8px;
+			color: #2E485D;
+			text-align: center;
+			background-color: #fff;
+			border: 1px solid #2E485D;
+			padding: 15px;
+		}
+}
+
+#BusinessProfilePage {
+	display: block;
+	margin: 0px auto;
+	text-align: left;
+	width: 100%;
+	background-color: #fff;
+	overflow-x: hidden;
+
+	@media only screen and (max-width: 685px) {
+		.sideLeftContent {
+			display: none;
+		}
+
+		.sideRightContent {
+			display: block;
+			margin: 0px auto;
+			width: 80vw;
+			padding: 10px 10px 10px 10px;
+		}
+
+		.contentQrCodeMini {
+			display: block;
+		}
+
+		.btnGoToTop {
+			display: block !important;
+		}
+	}
+
+	@media only screen and (min-width: 686px) {
+		.sideLeftContent {
+			display: inline-block;
+			width: 46vw;
+		}
+
+		.btnGoToTop {
+			display: none !important;
+		}
+
+		.sideRightContent {
+			display: inline-block;
+			margin: 0px;
+			width: 46vw;
+			padding: 10px 10px 10px 10px;
+			top: 0px;
+			left: 0px;
+			margin: 0px;
+		}
+
+		.contentQrCodeMini {
+			display: none;
+		}
+	}
+
+	.sideLeftContent {
+		background-color: #D9D9D9;
+		color: #fff;
+		position: relative;
+		min-height: 800px;
+		height: 100%;
+		min-height: 110vh;
+		min-width: 270px;
+		top: 0px;
+		left: 0px;
+		margin: 0px;
+		padding-top: 30px;
+		vertical-align: top;
+		text-align: center;
+	}
+
+	.sideRightContent {
+		background-color: #fff;
+		color: #131C29;
+		position: relative;
+		min-height: 100%;
+		height: auto;
+		min-width: 300px;
+		vertical-align: top;
+	}
+
+		.contentQrCode {
+			display: block;
+			margin: 10% auto;
+			width: 80%;
+			max-width: 500px;
+			position: relative;
+			background-color: #D9D9D9;
+		}
+
+		.contentQrCodeMini {
+			margin: 10% auto;
+			width: 80%;
+			max-width: 500px;
+			position: relative;
+			background-color: #D9D9D9;
+		}
+
+		.contentForm {
+				position: relative;
+				display: block;
+				margin: 0px auto;
+				padding: 20px 0px 20px 0px;
+				width: 100%;
+				text-align: left;
+				color: #2E485D;
+
+				.contentText {
+					display: block;
+					margin: 0px auto;
+					width: 100%;
+					max-width: 600px;
+				}
+		}
+		h1 {
+			text-align: left;
+			color: #2E485D;
+		}
+		.label {
+			color: #2E485D;
+			margin: 20px 0px 5px 0px;
+		}
+		.input {
+			width: 97%;
+			height: 30px;
+			border: none;
+			padding-left: 10px;
+			border-radius: 4px;
+			background-color: #D9D9D9;
+		}
+		.btnAccess {
+			width: 100%;
+			max-width: 270px;
+			display: block;
+			margin: 10px auto;
+			cursor: pointer;
+			border-radius: 8px;
+			color: #fff;
+			text-align: center;
+			background-color: #2E485D;
+			border: 1px solid #2E485D;
+			padding: 15px;
+		}
+}
+
+#HistoricPage {
+		display: block;
+		margin: 0px auto;
+		text-align: center;
+		width: 100%;
+		background-color: #fff;
+		overflow-x: hidden;
+
+	.contentForm {
+			position: relative;
+			display: block;
+			margin: 0px auto;
+			padding: 20px 0px 20px 0px;
+			width: 100%;
+			min-height: vh;
+			text-align: left;
+			color: #2E485D;
+			background-color: #fff;
+
+			.contentText {
+				display: block;
+				margin: 0px auto;
+				width: 100%;
+				max-width: 300px;
+			}
+	}
+
+	.contentProcedure {
+		width: 100%;
+		cursor: pointer;
+		border-bottom: 1px solid #2E485D;
+		padding: 10px 0px 10px 0px;
+		font-size: 20px;
+		margin-bottom: 10px;
+	}
+}
+
+#RegisterUser {
+		display: block;
+		margin: 0px auto;
+		text-align: left;
+		width: 100%;
+		background-color: #fff;
+		overflow-x: hidden;
+
+		@media only screen and (max-width: 685px) {
+			.sideLeftContent {
+				display: none;
+			}
+
+			.sideRightContent {
+				display: block;
+				margin: 0px auto;
+				width: 80vw;
+				padding: 10px 10px 10px 10px;
+			}
+
+			.logoSmall {
+				width: 150px;
+				display: block;
+				position: relative;
+				margin: 0px auto;
+			}
+
+			.titleLogin {
+				display: none;
+			}
+		}
+
+		@media only screen and (min-width: 686px) {
+			.sideLeftContent {
+				display: inline-block;
+				width: 46vw;
+			}
+
+			.sideRightContent {
+				display: inline-block;
+				margin: 0px;
+				width: 46vw;
+				padding: 10px 10px 10px 10px;
+				top: 0px;
+				left: 0px;
+				margin: 0px;
+			}
+
+			.logoSmall {
+				display: none;
+			}
+
+			.titleLogin {
+				display: block;
+				position: relative;
+				margin: 0px auto;
+				text-align: center;
+				font-size: 44px;
+				color: #131C29;
+				font-weight: bold;
+			}
+		}
+
+		.sideLeftContent {
+			background-color: #D9D9D9;
+			color: #fff;
+			position: relative;
+			min-height: 800px;
+			height: 100%;
+			min-height: 140vh;
+			min-width: 270px;
+			top: 0px;
+			left: 0px;
+			margin: 0px;
+			padding-top: 30px;
+			vertical-align: top;
+			text-align: center;
+
+			.logo {
+				width: 350px;
+			}
+		}
+
+		.sideRightContent {
+			background-color: #fff;
+			color: #131C29;
+			position: relative;
+			min-height: 100%;
+			height: auto;
+			min-width: 300px;
+			vertical-align: top;
+		}
+
+	.contentForm {
+			position: relative;
+			display: block;
+			margin: 10px auto 10px auto;
+			width: 100%;
+			max-width: 400px;
+			min-width: 350px;
+			text-align: left;
+			color: #2E485D;
+	}
+	h1 {
+		text-align: left;
+		color: #2E485D;
+	}
+	.label {
+		color: #2E485D;
+		margin: 20px 0px 5px 0px;
+	}
+	.input {
+		width: 97%;
+		height: 30px;
+		border: none;
+		padding-left: 10px;
+		border-radius: 4px;
+		background-color: #D9D9D9;
+	}
+	.btnAccess {
+		width: 100%;
+		max-width: 270px;
+		display: block;
+		margin: 10px auto;
+		cursor: pointer;
+		border-radius: 8px;
+		color: #fff;
+		text-align: center;
+		background-color: #2E485D;
+		border: 1px solid #2E485D;
+		padding: 15px;
+	}
+
+	.btnBack {
+		width: 100%;
+		max-width: 270px;
+		display: block;
+		margin: 10px auto;
+		cursor: pointer;
+		border-radius: 8px;
+		color: #2E485D;
+		text-align: center;
+		background-color: #fff;
+		border: 1px solid #2E485D;
+		padding: 15px;
+	}
+
+	.contentInput {
+		width: 45%;
+		margin-right: 3%;
+		display: inline-block;
+		vertical-align: top;
+	}
+}
+
+
+#HeaderComponent {
+	background-color: #2E485D;
+	color: #fff;
+	text-align: center;
+	padding: 10px;
+	width: 100%;
+	position: relative;
+	display: block;
+	margin: 0px auto;
+
+	.imgLeft {
+		width: 23px;
+		position: absolute;
+		top: 8px;
+		left: 13px;
+		cursor: pointer;
+	}
+
+	.img {
+		width: 20px;
+		position: absolute;
+		top: 8px;
+		right: 30px;
+		cursor: pointer;
+	}
+}
+
+//// GLOBAL style
+
+.btnGoToTop {
+	width: 40px;
+	height: 40px;
+	border-radius: 30px;
+	background-color: #2E485D;
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	z-index: 100;
+	cursor: pointer;
+	border: 1px solid #fff;
+
+	img {
+		width: 30px;
+		display: block;
+		margin: 5px auto;
+	}
+}
+
+.modal {
+	padding-top: 5px;
+
+	h1 {
+		color: #2E485D;
+		font-weight: bolder;
+		text-align: center;
+	}
+
+	label {
+		color: #2E485D;
+		font-size: 18px;
+		font-weight: bolder;
+	}
+
+	p {
+		color: #2E485D;
+		font-size: 14px;
+	}
+
+	.btnClose {
+		width: 40px;
+		height: 30px;
+		border-radius: 30px;
+		cursor: pointer;
+		position: absolute;
+		z-index: 100;
+		top: 10px;
+		right: 10px;
+		background-color: #2E485D;
+		text-align: center;
+		padding-top: 10px;
+	}
 }

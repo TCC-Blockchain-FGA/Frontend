@@ -8,7 +8,6 @@ const PrivateRoute = () => {
     isAuthenticated = true;
   else {
     localStorage.setItem('token', '');
-    localStorage.setItem('emailUser', '');
   }
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
 }
