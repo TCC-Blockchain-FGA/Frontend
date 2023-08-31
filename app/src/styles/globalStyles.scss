@@ -337,33 +337,91 @@ body {
 			border-radius: 4px;
 			background-color: #D9D9D9;
 		}
-		.btnAccess {
-			width: 100%;
-			max-width: 270px;
-			display: block;
-			margin: 10px auto;
-			cursor: pointer;
-			border-radius: 8px;
-			color: #fff;
-			text-align: center;
-			background-color: #2E485D;
-			border: 1px solid #2E485D;
-			padding: 15px;
-		}
 
-		.btnBack {
-			width: 100%;
-			max-width: 270px;
-			display: block;
-			margin: 10px auto;
-			cursor: pointer;
-			border-radius: 8px;
-			color: #2E485D;
-			text-align: center;
-			background-color: #fff;
-			border: 1px solid #2E485D;
-			padding: 15px;
-		}
+				.typeContent {
+		      width: 100%;
+		      position: relative;
+		      text-align: center;
+		      background-color: rgba(0,0,0,0);
+		      display: block;
+		      margin: 0px auto;
+		    }
+
+		    .btnType {
+		      display: inline-block;
+		      position: relative;
+		      width: 46%;
+		      height: 25px;
+		      vertical-align: top;
+		      background-color: rgba(0,0,0,0);
+		      padding: 10px 3px 10px 3px;
+		      color: #898D92;
+		      font-size: 14px;
+		      border-bottom: 2px solid #898D92;
+		      font-weight: bolder;
+		      cursor: pointer;
+		    }
+
+		    .btnTypeSelected {
+		      color: #2E485D;
+		      border-bottom: 2px solid #2E485D;
+		    }
+
+				.typeDataContent {
+					width: 80%;
+					display: block;
+					margin: 0px auto;
+					position: relative;
+					left: -2%;
+				}
+
+				.contentQrCodeAccordion {
+					display: block;
+					margin: 15px auto;
+					width: fit-content;
+				}
+
+				.contentCredentials {
+					width: 100%;
+					height: fit-content;
+					padding: 15px 10px 10px 10px;
+					cursor: pointer;
+			    color: #2E485D;
+					font-size: 16px;
+					font-weight: bold;
+					border-bottom: 1px solid #898D92;
+				}
+
+				.load {
+					position: fixed;
+					left: 0px;
+					top: 0px;
+					background-color: #fff;
+					width: 100vw;
+					height: 100vh;
+					z-index: 1000;
+
+					.imgLoad {
+						position: relative;
+						display: block;
+						margin: 20% auto 20px auto;
+					}
+
+					.btnBack {
+						width: 270px;
+						cursor: pointer;
+						border-radius: 8px;
+						color: #2E485D;
+						text-align: center;
+						background-color: #fff;
+						border: 1px solid #2E485D;
+						padding: 15px;
+						position: absolute;
+						left: 50%;
+						margin-left: -135px;
+						bottom: 30px;
+					}
+				}
 }
 
 #BusinessProfilePage {
@@ -771,6 +829,10 @@ body {
 		font-size: 14px;
 	}
 
+	.contentModalData {
+		min-height: 60vh;
+	}
+
 	.btnClose {
 		width: 40px;
 		height: 30px;
@@ -783,5 +845,39 @@ body {
 		background-color: #2E485D;
 		text-align: center;
 		padding-top: 10px;
+	}
+
+	.contentQrCodeAccordion {
+		display: block;
+		margin: 15px auto;
+		width: fit-content;
+	}
+
+	.btnAccess {
+		width: 100%;
+		max-width: 270px;
+		display: block;
+		margin: 10px auto;
+		cursor: pointer;
+		border-radius: 8px;
+		color: #fff;
+		text-align: center;
+		background-color: #2E485D;
+		border: 1px solid #2E485D;
+		padding: 15px;
+	}
+
+	.btnBack {
+		width: 100%;
+		max-width: 270px;
+		display: block;
+		margin: 10px auto;
+		cursor: pointer;
+		border-radius: 8px;
+		color: #2E485D;
+		text-align: center;
+		background-color: #fff;
+		border: 1px solid #2E485D;
+		padding: 15px;
 	}
 }

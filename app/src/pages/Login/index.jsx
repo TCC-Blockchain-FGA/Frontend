@@ -13,9 +13,6 @@ class Login extends React.Component {
     };
   }
 
-  componentDidMount() {
-  }
-
   gup(name, url) {
     if (!url) url = location.href;
     name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
@@ -68,41 +65,16 @@ class Login extends React.Component {
     )
   }
 
-  userLogin() {
-    return (
-      <div className="contentForm">
-        <p className="label">E-mail</p>
-        <input className="input" type="email" placeholder="Digite o seu email" onChange={(e) => this.handleChange(e, "email")} value={this.state.login}></input>
-
-        <p className="label">Senha</p>
-        <input className="input" type="password" placeholder="Digite sua senha" onChange={(e) => this.handleChange(e, "password")} value={this.state.password}></input>
-      </div>
-    )
-  }
-
   makeLogin() {
-    if(this.gup('type') === 'business'){
-      IssuerServices.loginOrg({
-        login: this.state.login,
-        password: this.state.password,
-      }).then(function(res){
-        localStorage.setItem('token', res.data.token);
-        window.location.href = '/businessProfile';
-      }).catch(function(err){
-        return toast.error("Erro! Verifique as informações");
-      });
-    }
-    else {
-      IssuerServices.login({
-        login: this.state.login,
-        password: this.state.password,
-      }).then(function(res){
-        localStorage.setItem('token', res.data.token);
-        window.location.href = '/userProfile';
-      }).catch(function(err){
-        return toast.error("Erro! Verifique as informações");
-      });
-    }
+    IssuerServices.loginOrg({
+      login: this.state.login,
+      password: this.state.password,
+    }).then(function(res){
+      localStorage.setItem('token', res.data.token);
+      window.location.href = '/userProfile';
+    }).catch(function(err){
+      return toast.error("Erro! Verifique as informações");
+    });
   }
 
   render() {
@@ -119,34 +91,12 @@ class Login extends React.Component {
 
         <p className="titleLogin">Login</p>
         {
-          this.gup('type') === 'business' &&
           this.businessLogin()
-        }
-        {
-          this.gup('type') !== 'business' &&
-          this.userLogin()
         }
         <br/>
         <div className="btnAccess" onClick={() => this.makeLogin()}>
           Entrar
         </div>
-        {
-          this.gup('type') === 'business' &&
-          <div className="btnOrg" onClick={() => window.location.href='/login?type=user'}>
-            Login como usuário?
-          </div>
-        }
-        {
-          this.gup('type') !== 'business' &&
-          <span>
-            <div className="btnRegister" onClick={() => window.location.href='/registerUser'}>
-              Cadastrar-se
-            </div>
-            <div className="btnOrg" onClick={() => window.location.href='/login?type=business'}>
-              Login como organização?
-            </div>
-          </span>
-        }
         </div>
         <ToastContainer />
       </section>
